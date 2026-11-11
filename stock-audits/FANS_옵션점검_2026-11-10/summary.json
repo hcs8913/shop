@@ -1,0 +1,19 @@
+{
+  "capturedAt": "2026-11-10T00:30:03.167Z",
+  "catalog": 2104,
+  "details": 2104,
+  "sourceOptions": 5801,
+  "kpActive": 198,
+  "kpLive": 198,
+  "kpStockErrors": 0,
+  "matched": 168,
+  "review": 0,
+  "outside": 30,
+  "full": 36,
+  "partial": 14,
+  "ended": 21,
+  "positiveSoldOptions": 70,
+  "positiveSoldProducts": 43,
+  "unmappedOptions": 0,
+  "kpMissingLive": 0
+}

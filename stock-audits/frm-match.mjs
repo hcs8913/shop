@@ -1,0 +1,16 @@
+import fs from 'node:fs';import {artist,norm,key,api} from './frm-expand.mjs';import {mapLimit} from './audit-stock.mjs';
+const clean=s=>norm(s).replace(/photo card/g,'photocard').replace(/key cap/g,'keycap').replace(/ball cap/g,'ballcap').replace(/t shirts?|tshirts/g,'tshirt').replace(/\b(?:random|delivery|pick up|배송|official|md|goods)\b/g,'').replace(/\s+/g,' ').trim();
+const acts=['SUNG HAN BIN','KIM JAE JOONG','Fromis 9','DONGHAE','ONEW','SF9','WENDY','NAM WOO HYUN','SUPER JUNIOR-D&E','BTOB','APINK','DPR','LEE TAE VIN','CHUU','Loona Assemble','OnlyOneOf','PARK SI WOO'];
+const kp=JSON.parse(fs.readFileSync('frm-audit/kp.json')),leaves=JSON.parse(fs.readFileSync('frm-audit/leaves.json'));
+const result=[];
+for(const p of kp){const act=acts.find(a=>p.name.toLowerCase().includes(a.toLowerCase()));const ar=artist(act||'');let title=p.name.replace(/^(?:\[[^\]]*\]\s*)+/,'').replace(act||'','');const parts=title.split(/\sGoods\s*-\s*/i);const item=clean(parts[1]||title);const collection=clean(parts.length>1?parts[0]:'');const ct=collection.split(' ').filter(t=>t.length>1&&!['the','in','seoul','2026','2025','2024'].includes(t));
+const cs=[];for(const s of leaves){if(artist(s.artiName)!==ar&&!(ar==='donghae'&&artist(s.artiName)==='dne')||/\[PICK-UP\]|현장 수령/i.test(s.parent?.name||s.name)&&!/DELIVERY|배송/.test(s.parent?.name||s.name))continue;
+const name=clean(s.name),context=clean((s.parent?.name||'')+' '+s.name);let ratio=ct.length?ct.filter(t=>context.split(' ').includes(t)||t.length>3&&key(context).includes(t)).length/ct.length:1;
+if(collection==='tree high school'&&/식목일 5.*나무/.test(context))ratio=1;
+if(ar==='loossemble'&&s.id===2107&&item==='lanyard set')ratio=1;
+const it=item.replace(/folding seat/i,'').split(' ').filter(t=>t.length>1),ir=it.filter(t=>name.split(' ').includes(t)||t.length>3&&key(name).includes(t)).length/(it.length||1);const exact=key(name)===key(item.replace(/folding seat/i,''));const generic=!s.parent&&ct.length&&ratio>=.8&&/MD|GOODS/i.test(s.name);if(ratio<.65&&!(exact&&!s.parent))continue;if(ir<.75&&!generic)continue;
+cs.push({...s,score:ratio*30+ir*40+(exact?30:0),generic,fallback:exact&&!s.parent,collectionRatio:ratio,itemRatio:ir});}
+cs.sort((a,b)=>b.score-a.score);result.push({...p,artist:ar,item,collection,candidates:cs.filter(c=>c.score>=(cs[0]?.score||0)-12||c.fallback)});
+}
+fs.writeFileSync('frm-audit/candidates.json',JSON.stringify(result,null,2));console.log('MATCHED',result.filter(p=>p.candidates.length).length,'UNMATCHED',result.filter(p=>!p.candidates.length).map(p=>p.name));
+if(process.argv[2]==='details'){const sources=[...new Map(result.flatMap(p=>p.candidates).map(s=>[s.id,s])).values()];console.log('DETAIL',sources.length);const details=await mapLimit(sources,4,async(s,i)=>{const d=await api(`/goods/${s.id}`,`frm-audit/details/goods-${s.id}.json`);const opts=await api(`/goods/options?goodsId=${s.id}`,`frm-audit/details/options-${s.id}.json`);const parentDetail=s.parent?await api(`/bundles/${s.parent.id}`,`frm-audit/details/parent-${s.parent.id}.json`):null;if(i%30===0)console.log('Detail',i);return {...s,...d,parentDetail,options:opts};});fs.writeFileSync('frm-audit/goods-details.json',JSON.stringify(details,null,2));console.log('ERRORS',details.filter(p=>p.error));}

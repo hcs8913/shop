@@ -1,0 +1,61 @@
+상세페이지 저장 2 프로젝트에서 요청된 가격/예약문구 정리 완료.
+결과 폴더: C:\Users\Administrator\Desktop\AI ORCA\상세페이지 저장 2\weverse_revision_20261106
+{
+  "date": "2026-11-06",
+  "scope": 377,
+  "modifiedProducts": 360,
+  "pricesCorrected": 341,
+  "expiredPreorderTitlesRemoved": 195,
+  "summariesCorrected": 222,
+  "referencesCorrected": 257,
+  "unchanged": 17,
+  "currentFuturePreorderProducts": 22,
+  "inventoryAndVisibilityChanged": false,
+  "batteryAddonUSD": 2,
+  "optionReferenceFollowupProduct": 110841,
+  "finalVerified": 377
+}
+원본 점검 CSV는 당시 스냅샷으로 보존. 현재 상품명/Reference는 위 결과의 수정결과.csv 또는 XLSX 참조. 이번 연계 작업은 재고·진열을 변경하지 않음.
+
+
+동일상품 엑셀 중복 정리 완료 (2026-11-06)
+{
+  "verifiedAt": "2026-11-06T04:21:37.886Z",
+  "protectedFirst52CellsAndFormatting": true,
+  "scopeStartId": 110842,
+  "duplicateGroups": 84,
+  "rowsRemoved": 92,
+  "remainingProducts": 285,
+  "uniqueNthProductsRetained": 8,
+  "removedNthRows": 84,
+  "removedDuplicateRegularOrFirstPreorderRows": 8,
+  "adminProductsModified": false,
+  "sheets": [
+    {
+      "name": "전체285개",
+      "before": 377,
+      "after": 285
+    },
+    {
+      "name": "가격수정251개",
+      "before": 341,
+      "after": 251
+    },
+    {
+      "name": "프리오더제목정리",
+      "before": 195,
+      "after": 109
+    },
+    {
+      "name": "현재예약출고유지",
+      "before": 22,
+      "after": 21
+    }
+  ],
+  "workbook": "C:\\Users\\Administrator\\Desktop\\AI ORCA\\상세페이지 저장 2\\weverse_revision_20261106\\가격_예약문구_수정결과.xlsx",
+  "backup": "C:\\Users\\Administrator\\Desktop\\AI ORCA\\상세페이지 저장 2\\weverse_revision_20261106\\중복정리_시작시점_백업.xlsx"
+}
+사용자가 확인한 앞52행을 값/수식/셀형식/주석까지 보존. 53행110842부터 중복92행만 제외. 동일 위버스 상품ID+예약접두 제외 원래 상품명으로 판정, 무표기 > 기본Pre Order > 예약차수 순. 기존 상위52행 동일순위 상품은 우선유지.
+단독2차상품8개는 동일 원상품이 없어 보존. 다른 시리즈/색상/버전/세트는 합치지 않음. 2차이상 중복84행 및 무표기/기본예약 중복8행을 제거. 가격/제목수정 작업 당시377개 처리기록은 역사자료로 보존.
+열려 있던 Excel의 저장전 변경사항을 SaveCopyAs 백업한 뒤 해당 워크북만 COM으로 편집·저장. 판매가계산기 워크북의 저장전 변경사항은 건드리지 않음.
+상품 판매 품절 프로젝트: 08_가격예약문구_수정결과.xlsx 갱신, 09_중복정리후_재판매대상.csv 285개, 10_중복제외_대조표.csv 92개. 이전07_동기화.csv는377개 원기록으로 보존. 이번 요청은 엑셀 행 정리이며 관리자 상품 삭제/수정 없음.

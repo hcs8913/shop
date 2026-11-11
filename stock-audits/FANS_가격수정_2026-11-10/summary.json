@@ -1,0 +1,13 @@
+{
+  "targets": 132,
+  "verified": 132,
+  "remaining": 0,
+  "unchanged": 19,
+  "updated": 101,
+  "deleted": 12,
+  "currency": "USD",
+  "calculator": "C:/Design Folder/엑셀/케이팝타운 판매가계산기.xlsx",
+  "rate": 0.00077,
+  "rounding": "truncate to 1 decimal",
+  "generatedAt": "2026-11-10T03:58:55.547Z"
+}

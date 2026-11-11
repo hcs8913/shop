@@ -1,0 +1,12 @@
+import fs from 'node:fs';
+const folder=process.env.STOCK_TASK_FOLDER||'재고_변경_2026-11-02';
+const results=JSON.parse(fs.readFileSync(`${folder}/처리결과.json`));
+const before=JSON.parse(fs.readFileSync(`${folder}/변경전_백업.json`));
+const target=JSON.parse(fs.readFileSync(`${folder}/대상목록.json`));
+const headers=['상품번호','관리자 상품명(원문)','처리 결과','이전 status','현재 status','이전 판매재고 합계','현재 판매재고 합계','옵션 수','확인 시각(UTC)'];
+const quote=x=>'"'+String(x??'').replaceAll('"','""')+'"';
+const rows=results.map(r=>{const b=before.find(x=>x.id===r.id);return[r.id,r.name,r.ok?'완료':'실패',b?.data?.some(x=>Number(x.active)===1)?'초록색':'회색',r.ok?'회색':'확인 필요',b?.data?.reduce((s,x)=>s+Number(x.product_available_quantity),0),r.ok?0:'',r.combinations?.length||'',r.verifiedAt||''];});
+fs.writeFileSync(`${folder}/처리결과.csv`,'\ufeff'+[headers,...rows].map(row=>row.map(quote).join(',')).join('\r\n'));
+const summary={target:target.count,processed:results.length,success:results.filter(x=>x.ok).length,failed:results.filter(x=>!x.ok).length,options:results.reduce((s,x)=>s+(x.combinations?.length||0),0),quantityZero:results.every(x=>x.ok&&x.combinations.every(c=>Number(c.quantity)===0)),allDisabled:results.every(x=>x.ok&&x.status===0)};
+fs.writeFileSync(`${folder}/검증요약.json`,JSON.stringify(summary,null,2));console.log(JSON.stringify(summary));
+if(summary.target!==summary.success||!summary.quantityZero||!summary.allDisabled)process.exitCode=1;

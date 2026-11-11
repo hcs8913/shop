@@ -1,0 +1,15 @@
+{
+  "checkedAt": "2026-11-10T05:31:59.790Z",
+  "excludedRule": "Product total and each actionable option must exceed 10",
+  "kpActive": 1613,
+  "kpPositive": 1605,
+  "cards": 6685,
+  "matched": 659,
+  "full": 29,
+  "partial": 30,
+  "positiveSoldOptions": 114,
+  "zero": 42,
+  "unmapped": 3,
+  "review": 948,
+  "proofErrors": 0
+}

@@ -1,0 +1,3 @@
+import fs from 'node:fs';import {load} from './withmuu-audit/browser-runtime/node_modules/cheerio/dist/esm/index.js';import {get,mapLimit} from './audit-stock.mjs';
+const $=load(fs.readFileSync('eline-audit/home.html'));console.log('INPUTS',$('input').toArray().map(e=>({name:$(e).attr('name'),placeholder:$(e).attr('placeholder')})));console.log('SEARCHLINKS',$('a[href]').toArray().filter(e=>/search/.test($(e).attr('href'))).map(e=>$(e).attr('href')));
+fs.mkdirSync('eline-audit/js',{recursive:true});await mapLimit($('script[src]').toArray(),4,async e=>{const src=$(e).attr('src'),h=await get(new URL(src,'https://www.everlineshop.com'));const file=src.split('/').at(-1);fs.writeFileSync('eline-audit/js/'+file,h);});

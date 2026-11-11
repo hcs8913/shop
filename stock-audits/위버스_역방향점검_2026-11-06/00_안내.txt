@@ -1,0 +1,13 @@
+위버스 판매 중 / 우리 사이트 재고 0 이하 또는 진열 꺼짐 비교
+{
+  "date": "2026-11-06",
+  "catalog": 6846,
+  "scope": 5452,
+  "supplierSaleCandidates": 414,
+  "confirmed": 382,
+  "ourQuantityZeroOrNegative": 377,
+  "ourPositiveQuantityButDisabled": 5,
+  "giftNeedsConfirmation": 26,
+  "rejectedDifferentProducts": 6
+}
+범위: 레퍼런스 wp/ 또는 상품명 Weverse Shop Gift. 역방향 점검이므로 재고 10개 미만 제외 조건은 적용하지 않음. 관리자 전체 목록을 새로 수집하고 위버스 상세 SALE 상태, 상품명·컬렉션·이미지를 대조. 판매 예정·판매 종료 제외. 일부 옵션만 판매 중인 경우 판매가능/품절 옵션을 구분. Weverse Shop Gift 특전 미표시 상품은 별도 시트로 분리. 수량은 관리자 목록의 판매가능 수량이며 실물 보유 재고와 다를 수 있음. 미확정 항목을 재판매 가능으로 단정하지 않음. 관리자 재고 및 진열 변경 없음.

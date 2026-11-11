@@ -1,0 +1,29 @@
+{
+  "capturedAt": "2026-11-10T01:16:13.901Z",
+  "catalog": 2104,
+  "sourceAvailableDetails": 243,
+  "sourceOptions": 734,
+  "inactiveJyp": 1119,
+  "targets": 132,
+  "live": 132,
+  "confirmed": 132,
+  "uniqueFansProducts": 109,
+  "partiallySoldOut": 30,
+  "withPositiveStock": 2,
+  "review": 0,
+  "unmappedOptions": 0,
+  "byArtist": {
+    "Stray Kids": 20,
+    "KickFlip": 21,
+    "Xdinary Heroes": 1,
+    "ITZY": 13,
+    "2PM": 2,
+    "DAY6": 48,
+    "NMIXX": 2,
+    "JUN. K": 9,
+    "TWICE": 5,
+    "NEXZ": 1,
+    "JANG WOOYOUNG": 9,
+    "NICHKHUN": 1
+  }
+}

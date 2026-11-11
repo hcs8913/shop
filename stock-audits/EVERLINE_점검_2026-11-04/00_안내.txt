@@ -1,0 +1,15 @@
+EVERLINE 품절 점검
+{
+  "date": "2026-11-04",
+  "activeEline": 596,
+  "verified": 175,
+  "fullSoldout": 95,
+  "partialSoldout": 40,
+  "available": 40,
+  "unresolved": 421,
+  "stockRows": 431
+}
+
+01 전체품절 / 02 일부옵션품절 / 03 관리자 옵션별 재고 / 04 대조 완료 175개 결과 / 05 이미지 대조 보고서
+상품명은 관리자 원문 그대로. 관리자 초록 status 및 eline/ 레퍼런스 확인. EVERLINE 상세의 품절 여부 및 옵션 표시를 재조회. 서로 다른 회차와 버전은 이미지를 대조하여 구분. 일부 옵션 품절 상품은 전체품절과 구분하며 판매 가능한 옵션을 함께 기록.
+관리자 재고/status 변경 없음.
